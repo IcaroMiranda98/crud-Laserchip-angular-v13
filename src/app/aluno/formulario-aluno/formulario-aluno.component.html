@@ -1,0 +1,71 @@
+<h1 mat-dialog-title *ngIf="!alteracao">Adicionar aluno</h1>
+<h1 mat-dialog-title *ngIf="alteracao">Alterar aluno</h1>
+
+<div mat-dialog-content>
+  <mat-form-field appearance="outline">
+    <mat-label>Id</mat-label>
+    <input
+      tabindex="-1"
+      disabled="true"
+      matInput
+      placeholder="Placeholder"
+      [(ngModel)]="data.id"
+    />
+    <mat-hint>Seu número único</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Nome</mat-label>
+    <input tabindex="1" matInput placeholder="Ícaro" [(ngModel)]="data.nome" />
+    <mat-hint>Informe seu primeiro nome</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Sobrenome</mat-label>
+    <input
+      tabindex="2"
+      matInput
+      placeholder="Miranda"
+      [(ngModel)]="data.sobrenome"
+    />
+    <mat-hint>Informe seu último nome</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Idade</mat-label>
+    <input
+      tabindex="3"
+      type="number"
+      matInput
+      placeholder="24"
+      [(ngModel)]="data.idade"
+    />
+    <mat-hint>Informe a idade</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Sexo</mat-label>
+    <mat-select tabindex="4" [(ngModel)]="data.sexo">
+      <mat-option value="F">Feminino</mat-option>
+      <mat-option value="M">Masculino</mat-option>
+      <mat-option value="O">Outro(ª)</mat-option>
+    </mat-select>
+    <mat-hint>Selecione um sexo</mat-hint>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <div>
+    <button tabindex="6" mat-stroked-button color="warn" (click)="onNoClick()">
+      Cancelar
+    </button>
+    <button
+      tabindex="5"
+      #adicionar
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="data"
+    >
+      {{ alteracao ? "Alterar" : "Adicionar" }}
+    </button>
+  </div>
+</div>

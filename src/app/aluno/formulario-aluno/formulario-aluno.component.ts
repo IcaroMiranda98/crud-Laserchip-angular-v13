@@ -1,10 +1,6 @@
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatButton } from '@angular/material/button';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Aluno } from '../model/aluno.model';
 
 @Component({
@@ -12,12 +8,11 @@ import { Aluno } from '../model/aluno.model';
   templateUrl: './formulario-aluno.component.html',
   styleUrls: ['./formulario-aluno.component.less'],
 })
-export class FormularioAlunoComponent{
-
-  @ViewChild("adicionar")
+export class FormularioAlunoComponent implements OnInit {
+  @ViewChild('adicionar')
   botaoAdicionar!: MatButton;
 
-  alteracao: boolean = false;
+  alteracao = false;
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: Aluno,
@@ -25,17 +20,16 @@ export class FormularioAlunoComponent{
   ) {}
 
   ngOnInit(): void {
-    if ( this.data.id ){
+    if (this.data.id) {
       this.alteracao = true;
     }
-
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  setFocusBotaoAdicionar(){
-    this.botaoAdicionar.focus()
+  setFocusBotaoAdicionar() {
+    this.botaoAdicionar.focus();
   }
 }

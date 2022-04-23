@@ -105,9 +105,27 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/crud-Laserchip-angular-v13/"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "crudlaserchip"
+  "defaultProject": "crudlaserchip",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

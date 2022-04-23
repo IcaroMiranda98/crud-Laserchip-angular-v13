@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormularioAlunoComponent } from '../formulario-aluno/formulario-aluno.component';
 import { Aluno } from '../model/aluno.model';
-import { AlunoSexo } from "../../shared/enum/aluno-sexo";
+import { AlunoSexo } from '../../shared/enum/aluno-sexo';
 import { AlunoService } from '../service/aluno.service';
 
 @Component({
@@ -23,13 +23,19 @@ export class ListaAlunoComponent {
     private _snackBar: MatSnackBar
   ) {
     _serviceAluno.obterTodosAlunos().subscribe((result: Aluno[]) => {
-      var tratamentoResult: Aluno[] = [];
-      result.map((x) => {
-        if (x.id != undefined) tratamentoResult.push(x);
-      });
-      this.dataSource = new MatTableDataSource(tratamentoResult);
+      this.dataSource = new MatTableDataSource(
+        this._trataDadosGetAlunosApi(result)
+      );
     });
   }
+  private _trataDadosGetAlunosApi(result: Aluno[]) {
+    const tratamentoResult: Aluno[] = [];
+    result.map((x) => {
+      if (x.id != undefined) tratamentoResult.push(x);
+    });
+    return tratamentoResult;
+  }
+
   filtraListaAlunos(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -67,7 +73,7 @@ export class ListaAlunoComponent {
   private _atualizaCadastroAluno(aluno: Aluno) {
     this._serviceAluno.alteraAluno(aluno).subscribe((alunoResponse: Aluno) => {
       console.log(alunoResponse);
-      var index = this.dataSource.data.findIndex((x) => x.id == aluno.id);
+      const index = this.dataSource.data.findIndex((x) => x.id == aluno.id);
       this.dataSource.data.splice(index, 1, aluno);
       this.dataSource._updateChangeSubscription();
       this.snackBarMensageSucesses('Registro alterado com sucesso!');
@@ -117,5 +123,11 @@ export class ListaAlunoComponent {
     if (aluno.id > 0) return false;
 
     return true;
+
+    debugger;
+    console.log('Teste');
+    for (let i = 0; i < 12; i++) {
+      console.log(i);
+    }
   }
 }

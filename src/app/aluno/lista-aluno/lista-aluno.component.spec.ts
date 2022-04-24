@@ -51,22 +51,29 @@ describe('ListaAlunoComponent', () => {
   let http: HttpTestingController;
   const API_URL = 'https://api-laser-teste.herokuapp.com/alunos';
 
-  beforeEach(async () => {
+  /*beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ListaAlunoComponent],
       providers: [
         { provide: MatDialog, useValue: MatDialog },
         { provide: MatSnackBar, useValue: {} },
         { provide: MatDialogRef, useValue: MatDialogRef },
-        { provide: MatSnackBar, useValue: MatSnackBar },
+        //   { provide: MatSnackBar, useValue: MatSnackBar },
       ],
       imports: [HttpClientTestingModule],
     }).compileComponents();
-  });
+  });*/
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
+      providers: [
+        { provide: MatDialog, useValue: MatDialog },
+        { provide: MatSnackBar, useValue: {} },
+        { provide: MatDialogRef, useValue: MatDialogRef },
+        //   { provide: MatSnackBar, useValue: MatSnackBar },
+      ],
+      declarations: [ListaAlunoComponent],
     });
     service = TestBed.inject(AlunoService);
     http = TestBed.inject(HttpTestingController);
@@ -129,14 +136,15 @@ describe('ListaAlunoComponent-excluiRegistroAluno-insereRegistroAluno', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ListaAlunoComponent],
       imports: [HttpClientTestingModule],
       providers: [
         { provide: MatDialog, useValue: MatDialog },
         { provide: MatSnackBar, useValue: {} },
         { provide: MatDialogRef, useValue: MatDialogRef },
+        //   { provide: MatSnackBar, useValue: MatSnackBar },
       ],
-    }).compileComponents();
+      declarations: [ListaAlunoComponent],
+    });
     service = TestBed.inject(AlunoService);
     http = TestBed.inject(HttpTestingController);
     http = TestBed.get(HttpTestingController);
@@ -144,18 +152,7 @@ describe('ListaAlunoComponent-excluiRegistroAluno-insereRegistroAluno', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-  /*it('deve excluir registro da lista de alunos', () => {
-    let httpRequest = carregaListaDeAlunos(http, API_URL);
-    expect(component.dataSource.data.length).toEqual(3);
 
-    component.excluiRegistroAluno(MOCK_ALUNOS[0]);
-    httpRequest = http.expectOne(`${API_URL}/${MOCK_ALUNOS[0].id}`);
-    httpRequest.flush(MOCK_ALUNOS[0]);
-
-    expect(httpRequest.request.method).toEqual('DELETE');
-    expect(httpRequest.request.responseType).toEqual('json');
-    expect(component.dataSource.data.length).toEqual(2);
-  });*/
   it('deve inserir um novo registro aluno', () => {
     let aluno = <Aluno>{
       id: 0,
@@ -177,4 +174,17 @@ describe('ListaAlunoComponent-excluiRegistroAluno-insereRegistroAluno', () => {
       component.dataSource.data[component.dataSource.data.length - 1]
     ).toEqual(aluno);
   });
+
+  /*it('deve excluir registro da lista de alunos', () => {
+    let httpRequest = carregaListaDeAlunos(http, API_URL);
+    expect(component.dataSource.data.length).toEqual(3);
+
+    component.excluiRegistroAluno(MOCK_ALUNOS[0]);
+    httpRequest = http.expectOne(`${API_URL}/${MOCK_ALUNOS[0].id}`);
+    httpRequest.flush(MOCK_ALUNOS[0]);
+
+    expect(httpRequest.request.method).toEqual('DELETE');
+    expect(httpRequest.request.responseType).toEqual('json');
+    expect(component.dataSource.data.length).toEqual(2);
+  });*/
 });

@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { MatButton } from '@angular/material/button';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Aluno } from '../model/aluno.model';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core'
+import { MatButton } from '@angular/material/button'
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { Aluno } from '../model/aluno.model'
 
 @Component({
   selector: 'app-formulario-aluno',
@@ -10,9 +10,9 @@ import { Aluno } from '../model/aluno.model';
 })
 export class FormularioAlunoComponent implements OnInit {
   @ViewChild('adicionar')
-  botaoAdicionar!: MatButton;
+  botaoAdicionar!: MatButton
 
-  alteracao = false;
+  alteracao = false
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: Aluno,
@@ -21,7 +21,7 @@ export class FormularioAlunoComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data.id) {
-      this.alteracao = true;
+      this.alteracao = true
     }
   }
 }

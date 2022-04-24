@@ -11,6 +11,11 @@
     "prettier-format": "prettier --config .prettierrc src/**/*.ts --write",
     "lint": "eslint . --ext .ts"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "prettier-format. &&  lint. && git add -A."
+    }
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.3.0",
@@ -55,10 +60,5 @@
     "pre-commit": "^1.2.2",
     "prettier": "^2.6.2",
     "typescript": "~4.6.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run prettier-format && npm run lint"
-    }
   }
 }

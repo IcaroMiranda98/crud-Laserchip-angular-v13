@@ -24,12 +24,4 @@ export class FormularioAlunoComponent implements OnInit {
       this.alteracao = true;
     }
   }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  setFocusBotaoAdicionar() {
-    this.botaoAdicionar.focus();
-  }
 }

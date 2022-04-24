@@ -7,7 +7,7 @@ import { Aluno } from '../model/aluno.model';
   providedIn: 'root',
 })
 export class AlunoService {
-  private _alunoApiUrl : string = 'https://api-laser-teste.herokuapp.com/alunos';
+  private _alunoApiUrl: string = 'https://api-laser-teste.herokuapp.com/alunos';
   constructor(private _http: HttpClient) {}
 
   obterTodosAlunos(): Observable<Aluno[]> {
@@ -25,5 +25,4 @@ export class AlunoService {
   excluiAluno(id: number): Observable<any> {
     return this._http.delete(`${this._alunoApiUrl}/${id}`);
   }
-
 }

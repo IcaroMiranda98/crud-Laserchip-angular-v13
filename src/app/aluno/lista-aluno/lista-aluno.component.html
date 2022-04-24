@@ -4,9 +4,10 @@
     <mat-label>Pesquisar aluno</mat-label>
     <input
       matInput
-      (keyup)="filtraListaAlunos($event)"
+      (keyup)="filtraListaAlunos(filtro)"
       placeholder="Pesquisar aluno"
       #input
+      [(ngModel)]="filtro"
     />
   </mat-form-field>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -41,7 +42,11 @@
           (click)="abreFormularioAluno(element)"
         >
           <mat-icon>edit</mat-icon></button
-        ><button mat-icon-button color="primary" (click)="excluiAluno(element)">
+        ><button
+          mat-icon-button
+          color="primary"
+          (click)="excluiRegistroAluno(element)"
+        >
           <mat-icon>delete</mat-icon>
         </button>
       </td>

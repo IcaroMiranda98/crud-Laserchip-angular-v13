@@ -55,7 +55,12 @@
 </div>
 <div mat-dialog-actions>
   <div>
-    <button tabindex="6" mat-stroked-button color="warn" (click)="onNoClick()">
+    <button
+      tabindex="6"
+      mat-stroked-button
+      color="warn"
+      (click)="this.dialogRef.close()"
+    >
       Cancelar
     </button>
     <button
